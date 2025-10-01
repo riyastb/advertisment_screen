@@ -1,0 +1,152 @@
+syntax ="proto3";
+package companyprofile;
+
+option go_package="domain/companyprofile";
+
+service CompanyProfile{
+
+    rpc Create(Payload)returns(Response){}
+    rpc Update(Payload)returns(Response){}
+    rpc GetAll(Empty) returns(stream Payload){}
+    rpc GetByID(GetRequest) returns(Payload){}
+    rpc Delete(GetRequest) returns(Response){}
+    rpc GetAllChildren(Empty) returns(stream Payload){}
+    rpc GetByChildren(Empty) returns(stream Payload){}
+    rpc GetByName(GetRequest) returns(Payload){}
+    rpc GetByBranchCode(GetRequest) returns(Payload){}
+	  rpc GetByBranchCodes(GetRequest)returns(stream Payload){}
+    rpc GetLastCategory(Empty)returns(stream Payload){}
+    rpc GetByParent(GetRequest) returns(stream Payload){}
+    rpc GetHeadOffice(Empty) returns(Payload){}
+    rpc GetCompanyProfileDetails(Empty)returns(stream CompanyProfileDetail){}
+    rpc GetSuperAgent(Empty)returns(stream Payload){}
+    rpc GetSuperAgentList(Empty)returns(stream Payload){}
+    rpc GetAllOnline(Empty) returns(stream Payload){}
+    rpc GetOnline(Empty) returns(Payload){}
+    rpc GetOnlineHeadOffice(Empty) returns(stream Payload){}
+    rpc ReprocessToken(GetRequest) returns(Response){}
+    rpc CreateArr(PayloadRes)returns(Response){}
+    rpc Sync(PayloadRes)returns(Response){}
+    rpc GetByLongitudeLatitude(GetRequestLongitudeLatitude)returns(Payload){}
+
+
+}
+
+message Empty{
+
+}
+
+message CompanyProfileDetail{
+  string Name=1;
+  string Landmark=2;
+  string Country=3;
+  string OtherDetails=4;
+  string ContactNumber=5;
+  string Email=6;
+  string Web=7;
+  string Description =8;
+ 
+}
+
+message PayloadRes{
+  repeated Payload Payload = 1;
+}
+
+message Payload{
+
+  string  Id                                 =1;                        
+  string  Name                               =2;           
+  string  BranchCode                         =3;                      
+  string  SerialRef                          =4;           
+  string  SerialCode                         =5;                     
+  string  CentralBankReference               =6;     
+  string  CentralBankReferenceBranchCode     =7;      
+  string  Parent                             =8;    
+  string  SettlementRate                     =9; 
+  string  ForexServiceCharge                 =10;                      
+  string  OtherDetails                       =11; 
+  string  LandMark                           =12; 
+  string  Country                            =13; 
+  string  State                              =14; 
+  string  City                               =15; 
+  string  PIN                                =16; 
+  string  ContactPerson                      =17; 
+  string  ContactPersonDesignation           =18; 
+  string  ContactNumber                      =19; 
+  string  MobileNumber                       =20; 
+  string  Email                              =21; 
+  string  Web                                =22; 
+  string  Description                        =23; 
+  int64   RemittanceAuthorizationRequired    =24; 
+  string  InterTransferAccountId             =25;       
+  string  InterTransferAccountName           =26;       
+  string  InterTransferAccountCode           =27;                    
+  string  BranchManager                      =28; 
+  int64   IsHeadOffice                       =29; 
+  string  Suffix                             =30; 
+  string  LocalCurrencyId                    =31;            
+  string  LocalCurrencyName                  =32;             
+  string  LocalCurrencyCode                  =33;                             
+  string  SettlementCurrencyId               =34;                
+  string  SettlementCurrencyName             =35;                  
+  string  SettlementCurrencyCode             =36;                          
+  int64   IsActivated                        =37; 
+  int64   IsOnline                           =38; 
+  int64   IsDeleted                          =39; 
+  string  CreatedBy                          =40; 
+  string  CreatedDate                        =41; 
+  string  CreatedTime                        =42; 
+  string  LastEditedBy                       =43; 
+  string  LastEditedDate                     =44; 
+  string  LastEditedTime                     =45; 
+  string  Vault                              =46; 
+  int64   IsWholeSale                        =47;  
+  string	FCCurrencyId	                     =48; 
+  string	FCCurrencyName			               =49; 
+  string	FCCurrencyCode			               =50;
+  string	CashLimit   			                 =51;
+  string  PettyCashAccId                     =52;
+  string  PettyCashAccName                   =53;
+  string  PettyCashAccCode                   =54;
+  string  RebateAccount						           =55;
+  int64   IsFinancialAgent                   =56;
+  string  WorkingHours                       =57;
+  string  Longitude                          =58;
+  string  Latitude                           =59;
+  string  Range                              =60;
+  int64   Agent                              =61;
+  int64   OpenBankingBranch                  =62;
+  int64   Physical                           =63;
+  int64   Virtual                            =64;
+  int64   RegionBranch                       =65;
+  repeated  string  BranchTime               =66;
+  int64   ATM                                =67;
+  string  SettlementAccountId                =68;
+  string  SettlementAccountName              =69;
+  string  SettlementAccountCode              =70;
+  string  Token                              =71;
+  string  NameArabic                         =72;
+}
+
+
+
+
+message GetRequest{
+    string  Id                                =1;
+    string  Name                              =2;
+    string  BranchCode                        =3;       
+     string  Parent                             =4;    
+}
+
+message Response{
+  string     Id                  =1;
+  string     ResponseStatus      =2;
+  string     ResponseData        =3;
+  string     ResponseCode        =4;
+  bool       Result              =5;
+}
+
+message GetRequestLongitudeLatitude{
+  string  Latitude                           =1;
+  string  Longitude                          =2;
+}

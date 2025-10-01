@@ -1,0 +1,65 @@
+syntax="proto3";
+package exchangerate;
+
+option go_package = "domain/exchangerate";
+
+
+service RemitanceAndForexService{
+    rpc Create(RateReq) returns (Response){}
+    rpc Update(Payload) returns (Response){}
+    rpc GetAll(GetReq) returns (stream Payload){}
+	rpc GetByBranch(GetReq) returns (Payload){}
+}
+
+
+message RateReq{
+	repeated Payload Payload =1;
+
+}
+
+message Payload{
+    string Id							=1;				
+	string BranchCode					=2;				
+	string BranchName					=3;				
+	string OriginCountryId				=4;				
+	string OriginCountryName			=5;				
+	string OriginCurrencyId				=6;				
+	string OriginCurrencyName			=7;				
+	string CurrencyId					=8;				
+	string CurrencyName					=9;								
+	string CostRate						=10;
+    string ForexBuyRate                 =11;
+    string ForexSellRate                =12;								
+	string LastModifiedUserId			=13;				
+	string LastModifiedUserName			=14;				
+	string LastModifiedDate				=15;				
+	string LastModifiedTime				=16;				
+	int64  IsDeleted					=17;
+	string CountryId                    =18;
+	string CountryName                  =19;
+	string CurrencyCode					=20;
+	string CountryCode					=21;
+
+
+
+}
+
+
+message Response{
+    bool 	Result					=1;
+	string 	Id 						=2;
+	string 	ResponseStatus 			=3;
+	string 	ResponseData			=4;
+	string 	ResponseCode			=5;
+	string 	LastModifiedDate		=6;
+	string 	LastModifiedTime		=7;
+}
+
+
+
+
+message GetReq{
+	string Latitude                     =1;
+	string Longitude                    =2;
+	string BranchCode                   =3;
+}
